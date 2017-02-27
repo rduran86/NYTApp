@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>NYTimes Article Search</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body>
+<div class="container">
+
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="jumbotron header">
+				<div class="container">
+					<h1 class="text-center">New York Times Search</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="panel-heading header">Search Parameters</div>
+			<div class="panel-body border">
+				Search Term<br><input type="text" id="searchTerm"><br>
+				Number of records(limit to less than 10)<br><input type="text" id="limit"><br>
+				Start Year(Optional)YYYYMMDD<br><input type="text" id="startYear"><br>
+				End Year(Optional)YYYYMMDD<br><input type="text" id="endYear"><br>
+				<button id="search">Search</button>
+				<button id="clear">Clear Results</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-12 ">
+			<div class="panel-heading header">Top Articles</div>
+			<div class="panel-body border" id="topArticles"></div>
+		</div>
+	</div>
+
+</div>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="assets/javascript/nyt.js"></script>
+	
+</body>
+</html>

@@ -1,0 +1,13 @@
+.header {
+	background: #20315A;
+	color: #fff;
+}
+.border {
+	border: 1px #eee solid;
+}
+input, button {
+	margin: 5px;
+}
+.row {
+	margin: 5px;
+}
