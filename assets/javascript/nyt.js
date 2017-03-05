@@ -7,16 +7,22 @@ $("document").ready(function() {
         //query string parameters
         var searchTerm = encodeURI($("#searchTerm").val());
         var limit = encodeURI($("#limit").val());
+        // limit equals 0 if if input field is empty or a number lower than 0 is entered
+        if (limit === "" || limit < 0){
+            limit = 0;
+        }
         var startYear = encodeURI($("#startYear").val());
         var endYear = encodeURI($("#endYear").val());
         if (startYear === "") {
-            startYear = "19860101"
+            startYear = "19700101"
         }
         if (endYear === "") {
             var today = new Date()
             var yyyy = today.getFullYear().toString();
             var mm = (today.getMonth() + 1).toString();
             var dd = today.getDate().toString();
+            //the month will come back as 1,2... if it is less than 9 thus the need to add a 0
+            //to comply with API date format
             for (var i = 0; i < 9; i++) {
                 var mmInt;
                 mmInt = parseInt(mm);
@@ -26,11 +32,22 @@ $("document").ready(function() {
                     break;
                 }
             }
+            //the day will come back as 1,2... if it is less than 9 thus a need to add a 0 
+            // to comply with API date format
+            for (var i = 0; i < 9; i++) {
+                var ddInt;
+                ddInt = parseInt(dd);
+                if (ddInt === i) {
+
+                    dd = "0" + dd;
+                    break;
+                }
+            }
             endYear = yyyy + mm + dd;
         }
 
         //api-key 
-        var authKey = "b9f91d369ff59547cd47b931d8cbc56b:0:74623931";
+        var authKey = "ae02bc22e92f43a0b4018df93e2d2ac5";
 
         //parameters to pass into the query string 
         var parameters = $.param({
@@ -48,7 +65,9 @@ $("document").ready(function() {
 
 
         if (limit < 10) {
-
+            console.log(limit);
+            console.log(endYear);
+            console.log(startYear);
 
             $.ajax({
                 url: queryURLBase,
@@ -62,7 +81,7 @@ $("document").ready(function() {
                 var response = data.response.docs;
 
                 //limit the articles if the user selected less than 10 otherwise set it to the response length
-                if (response.length < limit || limit === "") {
+                if (response.length < limit || limit === 0) {
                     limit = response.length
                     if (response.length < limit) {
                         alert("the records found are only " + limit);
